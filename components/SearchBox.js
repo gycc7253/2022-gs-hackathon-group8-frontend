@@ -11,34 +11,33 @@ function SearchBox() {
     const valueRef = useRef('')
 
     function handleSearch() {
+        // Send request and retrieve response
         window.alert(valueRef.current.value)
     }
 
     return (
-        <div className="main">
-            <div className="search">
-                <form>
-                    <TextField
-                    id="outlined-basic"
-                    variant="outlined"
-                    fullWidth
-                    label="Search"
-                    inputRef={valueRef}
-                    InputProps={{
-                        endAdornment: (
-                            <InputAdornment position="end">
-                                <IconButton color="primary" onClick={handleSearch}>
-                                    <SearchIcon/>
-                                </IconButton>
-                            </InputAdornment>
-                          ),
-                    }}
-                    />
-                    <IconButton 
-                        type="submit" 
-                        onClick={handleSearch}/>
-                </form>
-            </div>
+        <div className="search">
+            <form>
+                <TextField
+                id="outlined-basic"
+                variant="outlined"
+                fullWidth
+                label="Search"
+                inputRef={valueRef}
+                InputProps={{
+                    endAdornment: (
+                        <InputAdornment position="end">
+                            <IconButton color="primary" onClick={handleSearch}>
+                                <SearchIcon/>
+                            </IconButton>
+                        </InputAdornment>
+                        ),
+                }}
+                />
+                <IconButton 
+                    type="submit" 
+                    onClick={handleSearch}/>
+            </form>
         </div>
     )
 }
