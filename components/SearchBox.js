@@ -13,6 +13,7 @@ function SearchBox() {
     function handleSearch() {
         // Send request and retrieve response
         window.alert(valueRef.current.value)
+        return '{"name":"John", "age":30, "city":"New York"}'
     }
 
     return (
