@@ -15,6 +15,7 @@ function HomePage() {
             <Result/>
         </div>
     )
+
 }
-  
+
 export default HomePage
