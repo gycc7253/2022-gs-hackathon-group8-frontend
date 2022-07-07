@@ -13,14 +13,14 @@ function SearchBox() {
     function handleSearch() {
         // Send request and retrieve response
         window.alert(valueRef.current.value)
-        fetch('url', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(valudRef.current.value),
-        })
-        return '{"name":"John", "age":30, "city":"New York"}'
+        // const resp = await fetch('url', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(valudRef.current.value),
+        // })
+        // return resp.json()
     }
 
     return (
