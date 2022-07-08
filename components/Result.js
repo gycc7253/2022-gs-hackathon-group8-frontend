@@ -1,8 +1,8 @@
-import {useRef} from "react"
+import {useRef, useState, setState} from "react"
 import {Card, Box} from '@mui/material';
 
 
-function Result() {
+function Result(data) {
     // const data = '{"employees":[\
     //     {"name":"Ram", "email":"ram@gmail.com", "age":23},\
     //     {"name":"Shyam", "email":"shyam23@gmail.com", "age":28},\
@@ -14,7 +14,8 @@ function Result() {
     //     ]\
     // }'
     // var myObject = JSON.parse(data)
-    const data = [
+
+    const data2 = [
         {
            "email":"gowtham@outlook.com",
            "firstname":"gowtham",
@@ -34,12 +35,17 @@ function Result() {
            "password":"gow"
         }
      ];
+     if (data == null) {
+        this.setState({data: data2})
+     } else {
+        this.setState({data: data})
+     }
 
     return (
         <div>
-            {data.map(item => 
+            {this.useState("data").map(item => 
                 <Box sx={{ minWidth: 275}}>
-                    <Card variant="outlined">
+                    <Card variant="outlined" className="resultItem">
                         {item.lastname}
                     </Card>
                 </Box>

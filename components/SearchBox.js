@@ -1,27 +1,24 @@
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton"
-import Box from "@mui/material/Box"
-import {useRef} from "react"
 import SearchIcon from '@mui/icons-material/Search';
 import InputAdornment from '@mui/material/InputAdornment';
 
 
 
-function SearchBox() {
-    const valueRef = useRef('')
+function SearchBox({handleSearch, forwardedRef}) {
 
-    function handleSearch() {
-        // Send request and retrieve response
-        window.alert(valueRef.current.value)
-        // const resp = await fetch('url', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(valudRef.current.value),
-        // })
-        // return resp.json()
-    }
+    // function handleSearch() {
+    //     // Send request and retrieve response
+    //     window.alert(valueRef.current.value)
+    //     // const resp = await fetch('url', {
+    //     //     method: 'POST',
+    //     //     headers: {
+    //     //         'Content-Type': 'application/json'
+    //     //     },
+    //     //     body: JSON.stringify(valudRef.current.value),
+    //     // })
+    //     // return resp.json()
+    // }
 
     return (
         <div className="search">
@@ -31,7 +28,7 @@ function SearchBox() {
                 variant="outlined"
                 fullWidth
                 label="Search"
-                inputRef={valueRef}
+                inputRef={forwardedRef}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">

@@ -100,3 +100,9 @@ ul li {
 .header {
   display: flex;
 }
+
+.resultItem {
+  width: 200px;
+  height: auto;
+  margin: 20px;
+}
