@@ -57,7 +57,7 @@ class HomePage extends Component {
             <div className="main">
                 <div className="header">
                 <Image src="/images/gs.jpg" width={150} height={150}/>
-                <span className="projectTitle">Integrated Engineering Search</span>
+                <span className="projectTitle">Relational Intelligent Graph-based Search</span>
                 </div>
                 <div className="search">
                     <form>
