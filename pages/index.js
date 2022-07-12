@@ -38,9 +38,6 @@ class HomePage extends Component {
               alert("something is wrong")
             }
           }).then(newResults => {
-            console.log(newResults)
-            console.log(typeof newResults)
-            console.log(newResults.length)
             var d = [];
             var keys = Object.keys(newResults)
             keys.forEach(function(key){
@@ -52,7 +49,7 @@ class HomePage extends Component {
 
     }
     
-    
+
     render() {
         return (
             <div className="main">
