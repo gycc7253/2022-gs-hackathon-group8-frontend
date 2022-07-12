@@ -2,7 +2,6 @@ import { React, useState, setState, useRef, Component, createRef} from "react";
 import SearchBox from "../components/SearchBox";
 import Image from 'next/image'
 import {Paper, TableContainer, Table, TableRow, TableHead, TableCell, TableBody} from '@mui/material'
-import { resultData } from "../../search-ui/src/component/pages/SearchResult/SearchResultData";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton"
 import SearchIcon from '@mui/icons-material/Search';
