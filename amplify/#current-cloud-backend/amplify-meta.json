@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gsweb-staging-52040-authRole",
+      "UnauthRoleArn": "arn:aws:iam::469885867456:role/amplify-gsweb-staging-52040-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::469885867456:role/amplify-gsweb-staging-52040-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-gsweb-staging-52040-deployment",
+      "UnauthRoleName": "amplify-gsweb-staging-52040-unauthRole",
+      "StackName": "amplify-gsweb-staging-52040",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:469885867456:stack/amplify-gsweb-staging-52040/b58dd0e0-fe7d-11ec-a2cb-0a463dbacb9e",
+      "AmplifyAppId": "d28zpoxetuorm1"
+    }
+  }
+}
