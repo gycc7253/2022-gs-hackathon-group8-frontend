@@ -1,89 +1,123 @@
-import { React, useState, setState, useRef} from "react";
+import { React, useState, setState, useRef, Component, createRef} from "react";
 import SearchBox from "../components/SearchBox";
 import Image from 'next/image'
-import {Box, Card} from '@mui/material'
+import {Paper, TableContainer, Table, TableRow, TableHead, TableCell, TableBody} from '@mui/material'
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton"
+import SearchIcon from '@mui/icons-material/Search';
+import InputAdornment from '@mui/material/InputAdornment';
 
-function HomePage() {
-
-    const valueRef = useRef('')
-
-
-    const data2 = [
-        {
-           "email":"gowtham@outlook.com",
-           "firstname":"gowtham",
-           "lastname":"ss",
-           "password":"outlook010"
-        },
-        {
-           "email":"ss@ss.com",
-           "firstname":"ss",
-           "lastname":"ss",
-           "password":"ss"
-        },
-        {
-           "email":"gow@gow.com",
-           "firstname":"gow",
-           "lastname":"gow",
-           "password":"gow"
-        }
-    ];
-    const [data, setData] = useState(data2)
-
-    function handleSearch() {
-        // Send request and retrieve response
-        window.alert(valueRef.current.value)
-        const data = [
-            {
-               "email":"gowtham@outlook.com",
-               "firstname":"gowtham",
-               "lastname":"aa",
-               "password":"outlook010"
-            },
-            {
-               "email":"ss@ss.com",
-               "firstname":"ss",
-               "lastname":"bb",
-               "password":"ss"
-            },
-            {
-               "email":"gow@gow.com",
-               "firstname":"gow",
-               "lastname":"cc",
-               "password":"gow"
-            }
-         ];
-         setData(data)
-         return data
-        // const resp = await fetch('url', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(valudRef.current.value),
-        // })
-        // return resp.json()
+class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {list: [], textFieldValue: ''};
+        this.handleSearch = this.handleSearch.bind(this)
+        this.handleTextFieldChange = this.handleTextFieldChange.bind(this)
     }
 
-    return (
-        // To solve image not showing
-        <div className="main">
-            <div className="header">
-            <Image src="/images/gs.jpg" width={150} height={150}/>
-            <span className="projectTitle">Integrated Engineering Search</span>
+    handleTextFieldChange(event) {
+        this.setState({
+            textFieldValue: event.target.value
+        });
+    }
+
+
+    handleSearch() {
+        const url = 'https://qv5krif365.execute-api.ap-southeast-1.amazonaws.com/dev/search-query-tagger-lambda'
+
+        console.log("fetching")
+        fetch(url, {
+            method: "POST",
+            body: JSON.stringify({'question': this.state.textFieldValue})
+        }).then(response => {
+            console.log(response.status)
+            if(response.ok){
+              const data = response.json()
+              return data
+            }else{
+              alert("something is wrong")
+            }
+          }).then(newResults => {
+            var d = [];
+            var keys = Object.keys(newResults)
+            keys.forEach(function(key){
+                d.push(newResults[key])
+            })
+            this.setState({list: d})
+            console.log(typeof this.state.list)
+          })
+
+    }
+    
+
+    render() {
+        return (
+            <div className="main">
+                <div className="header">
+                <Image src="/images/gs.jpg" width={150} height={150}/>
+                <span className="projectTitle">Relational Intelligent Graph-based Search</span>
+                </div>
+                <div className="search">
+                    <form>
+                        <TextField
+                        id="outlined-basic"
+                        variant="outlined"
+                        fullWidth
+                        label="Search"
+                        onChange={this.handleTextFieldChange}
+                        InputProps={{
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton color="primary" onClick={this.handleSearch}>
+                                        <SearchIcon/>
+                                    </IconButton>
+                                </InputAdornment>
+                                ),
+                        }}
+                        />
+                        <IconButton 
+                            type="submit" 
+                            onClick={this.handleSearch}/>
+                    </form>
+                </div>
+                <div>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 850 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center"> Id</TableCell>
+                                <TableCell align="center"> Title</TableCell>
+                                <TableCell align="center"> Page Url</TableCell>
+                                <TableCell align="center"> Source</TableCell>
+                                <TableCell align="center"> author</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {this.state.list.map(item => 
+                                <TableRow>
+                                    <TableCell>
+                                        {item.id}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.title}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.pageUrl}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.source}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.author}
+                                    </TableCell>
+                                </TableRow>)}
+                        </TableBody>
+                        </Table>
+                    </TableContainer>
+                </div>
             </div>
-            <SearchBox handleSearch={handleSearch} forwardedRef={valueRef}/>
-            <div>
-                {data.map(item => 
-                    <Box sx={{ minWidth: 275}}>
-                        <Card variant="outlined" className="resultItem">
-                            {item.lastname}
-                        </Card>
-                    </Box>
-                )}
-            </div>
-        </div>
-    )
+        )
+    }
 
 }
 
